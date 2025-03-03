@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+</head>
+<body>
+<%
+    if (action === "editar") { %>
+        <h1>Editando Cliente</h1>
+    <% } else if (action === "ver") { %>
+        <h1>Detalles de Cliente</h1>
+    <% } else if (action === "eliminar") { %>
+        <h1>Eliminar Cliente</h1>
+    <% }
+%>
+
+<p>Nombre: <%= cliente.nombre %></p>
+<p>Apellido: <%= cliente.apellido %></p>
+<p>Edad: <%= cliente.edad %></p>
+<p>Teléfono: <%= cliente.telefono %></p>
+<p>Ciudad: <%= cliente.ciudad %></p>
+
+<% if (action === "editar") { %>
+    <h2>Editando Cliente</h2>
+    <form action="/actualizarCliente/<%= cliente.id %>" method="POST">
+        <input type="text" name="nombre" value="<%= cliente.nombre %>">
+        <input type="text" name="apellido" value="<%= cliente.apellido %>">
+        <input type="number" name="edad" value="<%= cliente.edad %>">
+        <input type="text" name="telefono" value="<%= cliente.telefono %>">
+        <input type="text" name="ciudad" value="<%= cliente.ciudad %>">
+        <button type="submit">Actualizar</button>
+    </form>
+<% } else if (action === "eliminar") { %>
+    <h2>Eliminar Cliente</h2>
+    <form action="/eliminarCliente/<%= cliente.id %>" method="POST">
+        <button type="submit">Confirmar Eliminación</button>
+    </form>
+<% } %>
+
+</body>
+</html>
