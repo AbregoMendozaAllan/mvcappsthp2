@@ -1,5 +1,11 @@
 import express from 'express';
-import {getAllClientes, getClienteDetalle} from '../controllers/clientesController.js';
+import {
+    deleteCliente,
+    getAllClientes,
+    getClienteDetalle,
+    insertCliente,
+    updateCliente
+} from '../controllers/clientesController.js';
 
 
 const router = express.Router();
@@ -15,5 +21,16 @@ router.get('/Empleados', (req,res)=>{
 })
 
 router.get("/clienteDetalle/:action/:codigo", getClienteDetalle);
+
+router.post("/clienteDetalle/eliminar/:codigo", deleteCliente);
+
+router.post("/clienteDetalle/actualizar/:codigo", updateCliente);
+
+router.get("/clienteDetalle/insertar", (req,res)=>{
+    res.render('clientes/clienteInsertar');
+});
+
+router.post("/clienteDetalle/insertar", insertCliente);
+
 
 export default router;
